@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { getChatById, deleteChat } from "@/lib/chat-store";
 
-interface Params {
-  params: {
-    id: string;
-  };
-}
+// interface Params {
+//   params: {
+//     id: string;
+//   };
+// }
 
-export async function GET(request: Request, { params }: Params) {
+export async function GET(request: Request, { params }: { params: { id: string } }) {
   try {
     const userId = request.headers.get('x-user-id');
     
@@ -15,7 +15,7 @@ export async function GET(request: Request, { params }: Params) {
       return NextResponse.json({ error: "User ID is required" }, { status: 400 });
     }
     
-    const { id } = await params;
+    const { id } = params;
     const chat = await getChatById(id, userId);
     
     if (!chat) {
@@ -35,7 +35,7 @@ export async function GET(request: Request, { params }: Params) {
   }
 }
 
-export async function DELETE(request: Request, { params }: Params) {
+export async function DELETE(request: Request, { params }: { params: { id: string } }) {
   try {
     const userId = request.headers.get('x-user-id');
     
@@ -43,7 +43,7 @@ export async function DELETE(request: Request, { params }: Params) {
       return NextResponse.json({ error: "User ID is required" }, { status: 400 });
     }
     
-    const { id } = await params;
+    const { id } = params;
     await deleteChat(id, userId);
     return NextResponse.json({ success: true });
   } catch (error) {
