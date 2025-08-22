@@ -133,6 +133,7 @@ export function MCPProvider({ children }: { children: React.ReactNode }) {
   
   // Get active servers formatted for API usage
   const getActiveServersForApi = (): MCPServerApi[] => {
+    console.log("getActiveServersForApi::", selectedMcpServers);
     return selectedMcpServers
       .map(id => getServerById(id))
       .filter((server): server is MCPServer => !!server && server.status === 'connected')
@@ -142,6 +143,7 @@ export function MCPProvider({ children }: { children: React.ReactNode }) {
         headers: server.headers
       }));
   };
+  
   
   // Start a server
   const startServer = async (serverId: string): Promise<boolean> => {

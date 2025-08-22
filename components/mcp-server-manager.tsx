@@ -215,12 +215,14 @@ export const MCPServerManager = ({
 
     // Handler for bearer token input
     const handleBearerTokenChange = (token: string) => {
+        console.log("------handleBearerTokenChange------- token::", token);
         setNewServer((prev) => {
+            console.log("------handleBearerTokenChange------- prev::", prev)
             // Remove any existing Authorization header
             const headers = (prev.headers ?? []).filter(
             (h) => h.key.toLowerCase() !== 'authorization'
             );
-
+            console.log("------handleBearerTokenChange------- headers::", headers)
             return {
             ...prev,
             headers: [

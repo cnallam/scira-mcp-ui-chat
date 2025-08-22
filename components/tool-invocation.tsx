@@ -106,6 +106,7 @@ export const ToolInvocation = memo(function ToolInvocation({
 
     if (processedContainer) {
       try {
+        console.log("------In Tool Invocation-------")
         const newHtmlResources = processedContainer.content
           .filter(
             (item): item is ContentItemWithHtmlResource =>

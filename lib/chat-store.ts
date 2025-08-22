@@ -215,6 +215,7 @@ export async function saveChat({
 
 // Helper to get just the text content for display
 export function getTextContent(message: Message): string {
+  console.log("getTextContent message:: ", message);
   try {
     const parts = message.parts as MessagePart[];
     return parts

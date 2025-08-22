@@ -8,6 +8,8 @@ const activeSandboxes = (global as any).activeSandboxes || new Map();
 
 // Helper to extract text content from a message regardless of format
 function getMessageText(message: any): string {
+
+  console.log("-----------getMessageText-------------")
   // Check if the message has parts (new format)
   if (message.parts && Array.isArray(message.parts)) {
     const textParts = message.parts.filter((p: any) => p.type === 'text' && p.text);
